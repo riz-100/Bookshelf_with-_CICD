@@ -1,17 +1,19 @@
 # Use official Node.js image
 FROM node:18
 
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /app
 
-# Copy backend package.json and package-lock.json
-COPY backend/package.json backend/package-lock.json ./
+# Copy and install backend dependencies
+COPY backend/package.json backend/package-lock.json ./backend/
+RUN cd backend && npm install
 
-# Install backend dependencies
-RUN npm install
+# Copy and install frontend dependencies
+COPY frontend/package.json frontend/package-lock.json ./frontend/
+RUN cd frontend && npm install && npm run build
 
-# Copy the backend files
-COPY backend/ .
+# Copy all files
+COPY . .
 
 # Expose backend port
 EXPOSE 5000
