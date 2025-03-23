@@ -9,7 +9,7 @@ COPY backend/package.json backend/package-lock.json ./backend/
 RUN cd backend && npm install
 
 # Copy and install frontend dependencies
-COPY frontend/package.json frontend/package-lock.json ./frontend/
+COPY frontend/ ./frontend/
 WORKDIR /app/frontend
 RUN npm install --legacy-peer-deps && npm run build  # Fix dependency issues
 
