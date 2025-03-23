@@ -10,7 +10,14 @@ RUN cd backend && npm install
 
 # Copy and install frontend dependencies
 COPY frontend/package.json frontend/package-lock.json ./frontend/
-RUN cd frontend && npm install && npm run build
+WORKDIR /app/frontend
+RUN npm install && npm run build
+
+# Move build output to backend's public folder
+RUN mv build ../backend/public
+
+# Return to backend directory
+WORKDIR /app/backend
 
 # Copy all files
 COPY . .
@@ -18,5 +25,5 @@ COPY . .
 # Expose backend port
 EXPOSE 5000
 
-# Start the backend server
+# Start backend server
 CMD ["npm", "start"]
