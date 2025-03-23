@@ -11,7 +11,7 @@ RUN cd backend && npm install
 # Copy and install frontend dependencies
 COPY frontend/package.json frontend/package-lock.json ./frontend/
 WORKDIR /app/frontend
-RUN npm install && npm run build
+RUN npm install --legacy-peer-deps && npm run build  # Fix dependency issues
 
 # Move build output to backend's public folder
 RUN mv build ../backend/public
