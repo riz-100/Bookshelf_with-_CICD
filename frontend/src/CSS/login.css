@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: url(C:\Users\rizwa\OneDrive\Desktop\WebDevelopmentUpgrad\book-shelf\frontend\public\img1.jpg);
+  background: url('/img1.jpg'); ;
 background-size: contain;
 }
 
